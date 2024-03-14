@@ -1,0 +1,145 @@
+const TelegramBot = require('node-telegram-bot-api');
+
+const token = '7194466757:AAHDNCcWS1DcbNNCDEs8-d-7WeF-JAjUwmg'; // Reemplaza 'TU_TOKEN' con tu token real
+
+const bot = new TelegramBot(token, { polling: true });
+
+// Maneja el comando /start
+bot.onText(/\/start/, (msg) => {
+  bot.sendMessage(msg.chat.id, '¡Hola! Somos LyL Agency y para nosotros es un placer tenerte aquí. Soy el bot asistente de Jessika y te guiaré a través del proceso de registro. No te preocupes, el proceso es fácil y breve. Por favor, selecciona tu rango de edad:', {
+    reply_markup: {
+      inline_keyboard: [
+        [{ text: 'Menores de 18 años', callback_data: '1' }],
+        [{ text: 'De 18 a 35 años', callback_data: '2' }],
+        [{ text: 'Mayores de 35 años', callback_data: '3' }]
+      ]
+    }
+  });
+});
+
+// Maneja el evento de selección de rango de edad
+bot.on('callback_query', (query) => {
+  const chatId = query.message.chat.id;
+  const data = query.data;
+
+  switch (data) {
+    case '1':
+      bot.sendMessage(chatId, 'Lo sentimos, debes tener mínimo 18 años para poder aplicar. ¡Muchas gracias por tu interés!');
+      break;
+    case '2':
+      bot.sendMessage(chatId, '¡Perfecto! Te recomiendo estas aplicaciones:', {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: 'Livejoy', callback_data: 'livejoy' }],
+            [{ text: 'Livu-Yaar', callback_data: 'livu_yaar' }],
+            [{ text: 'Suki', callback_data: 'suki' }]
+          ]
+        }
+      });
+      break;
+    case '3':
+      bot.sendMessage(chatId, 'Perfecto, te recomiendo:', {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: 'Suki', callback_data: 'suki' }]
+          ]
+        }
+      });
+      break;
+    case 'livejoy':
+      bot.sendMessage(chatId, `
+*LIVEJOY* es una aplicación con alto tráfico de usuarios, lo que hace que logremos fácilmente nuestra meta 😁. Es de pagos semanales, con una meta mínima de 20.000 puntos para 26 dólares. Cada 769 puntos equivalen a 1 dólar 🤑.
+Si no cumples con la meta, los puntos no se te perderán en ningún momento 😎.
+
+*¿Cómo se monetiza?*
+- *Llamada match:* Los primeros 25 segundos te dan 5 puntos y es 100% monitoreada. Si la llamada continúa, te dan 60 puntos por minuto y es 100% privada.
+- *Llamada privada:* 120 monedas por minuto.
+- *Llamada directa:* Sea que el usuario la llame o la chica llame al usuario, 40 puntos por qué se contesten, 100% privada.
+
+(Recuerda, los usuarios no deben saber que trabajamos en la app).
+
+Debes saber que el 80% de los usuarios buscan o generan contenido explícito, pero será tu decisión hasta dónde quieres llegar con los usuarios 😜.
+
+Tenemos chicas que actualmente se facturan desde 26 dólares hasta 1000 dólares a la semana 💵.
+Recuerda, las chicas que más facturan son muy disciplinadas y manejan contenido explícito 😈. Las chicas que no manejan contenido explícito pueden facturar desde 26 dólares hasta 180 dólares 🥳 a la semana.
+
+Recuerda que si quieres manejar algún tipo de contenido explícito, lo debes hacer solo en Videollamada privada, que identificarás por el candadito verde en la parte superior izquierda 🔒. Y las monitoreadas las identificarás por un ojito 👁️ rojo con naranja.
+
+¡LOS LÍMITES LOS PONES TÚ!
+
+*¿CÓMO ME ACTIVO EN LIVEJOY LYL AGENCY?*
+
+Mediante el siguiente link puedes descargar la App si tienes iPhone o Android:
+
+[Descarga la App](https://livejoy.mobi/register?code=7ed5349a632137ab405a4f74b9873ac5)
+
+🌟 *Pasos para la Creación y Activación de tu perfil* 🌟
+
+1️⃣ Descargas la app.
+2️⃣ Entras con tu correo. *ES MUY IMPORTANTE QUE LE DES EN ENTRAR Y NO EN REGISTRAR*.
+3️⃣ En la app debes poner un *NOMBRE FALSO*.
+4️⃣ Debes subir un mínimo de 5 fotos y 1 historia (sin contenido sexual).
+5️⃣ La actividad se realiza de 24 a 48 horas hábiles.
+
+👀 Para que tu perfil sea verificado:
+- Tu correo debe ser verificado.
+- Verificar fotos.
+- Verificar historia.
+- Selfie gestos.
+- Verificar número.
+
+DEBES ENVIARME:
+✨ Nombre completo real.
+✨ Tu número de teléfono.
+✨ País donde estás.
+✨ Nombre de usuario.
+✨ Correo con el que creaste el perfil.
+
+*¡BIENVENIDA!*`,);
+      break;
+    case 'livu_yaar':
+      bot.sendMessage(chatId, 'APLICATIVO LIVU💜/YAAR💚\n\nInteractúa a través de Videollamadas con usuarios a nivel mundial y genera ingresos semanales 📲, desde Casa. Solo necesitas tu Celular y toda la actitud para comenzar!!!\n\nGenera ingresos con:\n💜 Videollamadas de Diosa : valor por minuto de 60 a 100 puntos\n🖤 Videollamadas de Amigos : Valor Por minuto 80 a 120 puntos\n🎁 Gana puntos Por Regalos Recibidos\n📒 Gana puntos por Tareas Realizadas\n\nNota: También hay llamadas Aleatorias gratuitas que te sirven para motivar a los usuarios a llamarte\n\n👉🏽Cortes Semanales: TODOS LOS DOMINGOS 7PM ( Recuerda necesitas 20.000 puntos mínimos para cobrar )\n👉🏽PAGOS💸 TODOS LOS VIERNES o Lunes Después del Corte💸 siempre caen después de 6 de la tarde (Por la diferencia Horaria). Llegan Directamente a la cuenta asociada que tengas en la app Pago 100% Seguro🪙💸\nLos pagos se Realizan a cualquier cuenta nacional en Colombia (Incluido Nequi y daviplata), Perú, Bolivia, Chile, Ecuador, Uruguay , Paraguay, Panamá, Argentina.\nAPP no disponible para Venezuela\n\nMeta Minima Semanal para Recibir Salario 20.000 PUNTOS equivalentes a 24 dolares.\nCabe Resaltar que el pago te llegara directamente a tu cuenta bancaria desde China💳💰 y El banco cobrara 2USD por comision bancaria internacional .\n\n🥳🕐 No tienes que cumplir Horarios tu misma decides a qué hora trabajar; Lo importante es que le dediques de 4 a 5 horas diarias para que obtengas excelentes salarios semanales!!!🥳🕐\n\nEn la app encontrarás todo tipo de Usuarios!  Muchos querrán contenido explícito como Fotos, es tu decisión hacerlo NO Obligación!!! También usuarios que solo desean interactuar😊\n\nCOMO  ME ACTIVO YAAR- LIVU LYL AGENCY\n\nIOS /IPHONE Descargar la app LIVU 💜\n\nANDROID Descargar la app YAAR 💚\n\nLA APP SE DESCARGA UNICAMENTE EN ESTE LINK (NO EN LA PLAY STORE)\n\nhttps://livu.live/descargar.html\n\n💫 Pasos para la Creación de tu perfil\n\n1️⃣Descarga la app\n\n2️⃣Entras con tu correo Gmail (dónde dice crear con Google)\n\n3️⃣En la app debes de poner un NOMBRE FALSO\n\n4️⃣ Debes colocar 6 fotos (preferiblemente cuerpo completo) y 1 video (tuyo) con las indicaciones que te daré.\n\n5️⃣La activación se realiza de 24 a 48 horas hábiles. \n\nDEBES DE ENVIARME\n\n✨Nombre completo real\n✨Tú número de teléfono\n✨País donde  estas\n✨Captura del perfil\n✨ID  número de identificación de la app.\n\n❌ NO DEBES RESPONDER LLAMADAS NI MENSAJES HASTA QUE YO TE CONFIRME QUE ESTAS ACTIVA🚫');
+      break;
+    default:
+      break;
+  }
+});
+
+// Maneja la acción de Suki
+bot.on('callback_query', (query) => {
+  const chatId = query.message.chat.id;
+  const app = query.data;
+
+  if (app === 'suki') {
+    bot.sendMessage(chatId, `**Aplicación SUKI**\n\nEs una excelente aplicación con mucho flujo de usuarios ☺️\n\n*SUKI* (se descarga por medio de un link que yo te envío) es una aplicación de pagos semanales. 🤑 Siempre y cuando cumplas con la meta mínima 3000 diamantes equivalen a 15 dólares 💚 cada 200 diamantes es un dólar 🪙\n\n*Que se hace para monetizar?*\n\nHacemos videollamadas con usuario de todas partes del mundo entre más dures en una llamada más monedas conseguirás😁\n\n*Recibes diamantes por:*\n💎 Videollamadas públicas\n💎 Videollamadas privadas\n💎Tareas diarias\n💎 Regalos\n💎 Regalos en live público luego del nivel 2\n\n*(los usuarios no deben saber que trabajamos en la app)*\n\nDebes saber que el 80% de los usuarios buscan o genera contenido explícito, pero será tu decisión hasta donde quieres llegar con los usuarios😜\n\nTenemos chicas que actualmente se facturan desde 15 dólares hasta 800 dólares a la semana 💵\n\nVale aclarar que las chicas que más facturan son muy disciplinadas y manejan contenido explícito 😈 Las chicas que no manejan contenido explícito pueden facturar desde 16 hasta 80 dólares 🥳 a la semana.\n\n*LOS LÍMITES LOS COLOCAS TÚ* 💜\n\n*COMO ME ACTIVO EN SUKI LYL AGENCY*\n\nMediante el siguiente link puedes descargar la App si tienes iPhone o Android\n\nDebes de descargar la app únicamente con este link de lo contrario no podemos asegurar tu PAGO.\n\n[Descargar SUKI](https://suki.onelink.me/Jaj9/c3c58c8d)\n\n*💫 Pasos para la Creación y Activación de tu perfil*\n\n1️⃣Descargas la app\n\n2️⃣Entras con tu correo\n\n3️⃣ INGRESA EL CÓDIGO DE VERIFICACIÓN PARA ASEGURAR TU PAGO A87768\n\n4️⃣ Pon un nombre artístico.\n\n5️⃣ Realizar 10 llamadas en una hora. PROHIBIDO HACER CONTENIDO EN LAS LLAMADAS DE PRUEBA\n\n6️⃣ La activación se realiza cuando termines las 10 llamadas de verificación.\n\n*Para que tu perfil sea verificado*\n\n🎀 Verificar fotos\n🎀 Verificar historia\n🎀 Selfie\n\n*DEBES ENVIARME*\n\n✨Nombre completo real\n✨Tú número de teléfono\n✨País donde estas\n✨ID de tu perfil\n✨Correo con el que creaste el perfil\n\n*BIENVENIDA*`);
+  }
+});
+
+// Maneja la acción de Livejoy
+bot.on('callback_query', (query) => {
+  const chatId = query.message.chat.id;
+  const app = query.data;
+
+  if (app === 'livejoy' || app === 'livu_yaar' || app === 'suki') {
+    bot.sendMessage(chatId, `Genial, terminaste con el registro, ahora comunícate con nuestra lider Jessika (@jessikalyl) para obtener más información y capacitación sobre la aplicación ${app.toUpperCase()}.`);
+  }
+});
+
+
+// Maneja el evento de nuevos miembros
+bot.on('new_chat_members', (msg) => {
+  const newUser = msg.new_chat_members[0];
+  bot.sendMessage(msg.chat.id, `¡Bienvenido al grupo, ${newUser.first_name}!`);
+});
+
+// Maneja mensajes de texto
+bot.on('message', (msg) => {
+  const chatId = msg.chat.id;
+  const messageText = msg.text.toLowerCase(); // Convertimos el texto a minúsculas para facilitar la comparación
+
+  // Verifica si el mensaje recibido no es el comando /start
+  if (!messageText.startsWith('/start')) {
+    // Respuesta para cualquier mensaje que no sea /start
+    bot.sendMessage(chatId, '¡Hola! Soy un bot de LyL Agency. Mis respuestas son limitadas y automatizadas. Por favor, continúa con el registro y al final encontrarás el contacto de Jessika, quien estará a cargo de tu proceso. Para volver al inicio, puedes escribir /start.');
+  }
+});
